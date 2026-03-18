@@ -5,6 +5,8 @@ from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 
+User = get_user_model()
+
 
 class DriverCreationForm(UserCreationForm):
 
@@ -15,7 +17,7 @@ class DriverCreationForm(UserCreationForm):
     )
 
     class Meta(UserCreationForm.Meta):
-        model = Driver
+        model = User
         fields = UserCreationForm.Meta.fields + ("license_number",)
 
     def clean_license_number(self):
@@ -33,7 +35,7 @@ class DriverLicenseUpdateForm(forms.ModelForm):
     )
 
     class Meta:
-        model = Driver
+        model = User
         fields = ("license_number",)
 
     def clean_license_number(self):
